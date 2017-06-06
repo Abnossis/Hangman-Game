@@ -85,16 +85,15 @@
 
 // My Global Variables
 //--------------------------------------------------
-
+// used to record how many times a ketter can be pressed
 var rigthGuessCounter = ['a','b','c','d','e',
                            'f','g','h','i','j',
                            'k','l','m','o','p',
                            'q','r','s','t','u',
                            'v','w','x','y','z'];
 
-// This is where  hold all my Zoo Animals
-var wordBank = ['giraffe','bear','jaguar',
-                'chimpanzee','lion','alligator'];
+// This is where  hold all my words
+var wordBank = ['giraffe','bear','giraffe','lion']; 
 // This is where I hold the Selected Word
 var selectedWord = "";
 // This is where I hold the letters in a word
@@ -116,7 +115,8 @@ var rigthGuessCounter = 0;
 //  Functions
 //--------------------------------------------------
 
-function reset(){
+function reset()
+{
 
 	// selects ramdom word from wordBank
 	selectedWord = wordBank[Math.floor(Math.ramdom() * wordBank.length)];
@@ -140,7 +140,7 @@ function reset(){
                            'k','l','m','o','p',
                            'q','r','s','t','u',
                            'v','w','x','y','z'];
-    // test=false;
+    test = false;
     startGame();
 }
 function startGame() 
@@ -170,7 +170,7 @@ function startGame()
 
 
     //filling the blanks
-    for (var i = 0; i< numBlanks; i++)
+    for (var i = 0; i< numBlanks; i++) i = 4
     {
         positiveAndBlanks.push('_');
     	document.getElementById('wordToGuess').innerHtml = positiveAndBlanks;
@@ -192,54 +192,53 @@ function startGame()
 
 function compareLetters(userKey)
 {
+                console.log('Working!');
 
-    console.log('Working');
-    // If user selected key belongs to the choosen word run this function
-    if(selectedWord.indexOf(userKey) > -1)
-    {    
-    	// loops equal to the amount of blanks
-        for(var i = 0; i < numBlanks; i++)
-        {   
-            //fills in right index with user key
-        	if (lettersInWord[i] === userKey)
-        	{
-                rigthGuessCounter++;
-                positiveAndBlanks[i] = userKey;
-                document.getElementById('wordToGuess').innerHtml = positiveAndBlanks.join(' ');
-            }
-        }
-
-        // console test
-        console.log(positiveAndBlanks);
-    }
-    //by pressing the wrong key
-    else
-    {   wrongLetter.push(userKey);
-       	guessesLeft--;
-        // changes to HTML
-        document.getElementById('numGuesses').innerHtml = guessesLeft;
-        document.getElementById('wrongGuesses').innerHtml = wrongLetter;
-        // console test
-        document.getElementById('Wrong letters = ' + wrongLetter);
-        document.getElementById('Guesses left are ' + guessesLeft);
-            
-    }
-}
+                // If user selected key that belongs to the choosen word run this function
+                if(selectedWord.indexOf(userKey) > -1)
+                {    
+    	            // loops equal to the amount of blanks
+                    for(var i = 0; i < numBlanks; i++)
+                    {   
+                        //fills in right index with user key
+        	            if (lettersInWord[i] === userKey)
+        	            {
+                            rigthGuessCounter++;
+                            positiveAndBlanks[i] = userKey;
+                            document.getElementById('wordToGuess').innerHtml = positiveAndBlanks.join(' ');
+                        }   
+                    }
+                    // console test
+                    console.log(positiveAndBlanks);
+                }
+                 //by pressing the wrong key
+                else
+                {   
+    	            wrongLetter.push(userKey);
+       	            guessesLeft--;
+                    // changes to HTML
+                    document.getElementById('numGuesses').innerHtml = guessesLeft;
+                    document.getElementById('wrongGuesses').innerHtml = wrongLetter;
+                    // console test
+                    document.getElementById('Wrong letters = ' + wrongLetter);
+                    document.getElementById('Guesses left are ' + guessesLeft);   
+                }
+        
 function winLose()
 {
    // When filled with the right Zoo Animal then you win
    if (rigthGuessCounter === numBlanks) 
    {
-      //count to Win
-      winCount++;
-      // changes to HTML
-      document.getElementById('winCounter').innerHtml = winCount;
-      alert('You Win');
-      reset();
+        //count to Win
+        winCount++;
+        // changes to HTML
+        document.getElementById('winCounter').innerHtml = winCount;
+        alert('You Win');
+        reset();
     }
 
     //if the number of guesses reaches 0 then you lose
-    else if (guessesLeft === 0); 
+    else if (guessesLeft === 0) 
     {
 
     	//count losses
@@ -249,35 +248,33 @@ function winLose()
     	alert('You Lose');
     	reset();
     }
-
 }
 
- //  PROCCESS
+//  PROCCESS
 //--------------------------------------------------
+// Start running the code
        
 startGame();
 
-document.onekeyup = function(event)
-{
-    test = true;
+document.onekeyup = function(event) 
+{  
+	test = true;
     var letterGuessed = even.key;
-    for (var i = 0; i< rigthGuessCounter.length; i++)
-    {
-        
-        if(letterGuessed === rigthGuessCounter[i] && test === true)
+    for (var i = 0; i< doubleWord.length; i++)
+    {    
+        if(letterGuessed === doubleWord[i] && test === true)
         {
-        var splitDword === rigthGuessCounter.splice (i,1);
-        // Test
-        console.log('Double word is = ' + doubleWord[i])
-        console.log('Splice Word is = ' + spliceBwoed);
-        
-        compareLetters(letterGuessed);
-        winLose();
+            var spliceDword = doubleWord.splice(i,1);
+            //  test / Debug
+            console.log('Double word is = ' + doubleWord[i])
+            console.log('Splice Word is = ' + spliceDWord);         
+              
+            // console.log('letterGuessed');
+            compareLetters(letterGuessed);
+            winLose();
         }
-
+        
     }
-
-
 }
 </script>
 </body>
