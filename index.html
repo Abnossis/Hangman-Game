@@ -26,7 +26,9 @@
    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
 </head>
-  <!-- This is a Fantastic Divider -->
+
+<!-- This is a Divider -->
+
 <body>
     <div class="container">
         <div class="jumbotron">
@@ -34,6 +36,8 @@
       	  	<p> Guess the Animals in a Zoo!</p>
       	</div>
 
+        <!--  Panel for Gessing -->
+
         <div class="panel panel-default">
             <div class="panel-heading">
              <h3 class="panel-heading">Word to Guess</h3>
@@ -42,24 +46,46 @@
                 <h2 id="wordToH=Guess">_ _ _ _ _ _ _</h2>
             </div>
         </div>
+
+         <!--  Panel for Wrong Guesses -->
+
+        <div class="panel panel-default">
+            <div class="panel-body">
+             Wrong Guesses: <span id="wrongGuesses"></span>
+            </div>
+        </div>
+
+         <!-- Panel for Number of Guesses -->
+
+        <div class="panel panel-default">
+            <div class="panel-body">
+             Guesses Left: <span id="numGuesses"></span>
+            </div>
+        </div>
+
+         <!-- Panel fot Win Conting  -->
         
         <div class="panel panel-default">
-            <div class="panel-heading">
-             <h3 class="panel-heading">Word to Guess</h3>
-            </div>	
             <div class="panel-body">
-                <h2 id="wordToH=Guess">_ _ _ _ _ _ _</h2>
+             Win Conter: <span id="winCounter">0</span>
             </div>
         </div>
-          
 
+         <!-- Panel for Loss Counting -->
+      
+        <div class="panel panel-default">
+            <div class="panel-body">
+             Loss Counter: <span id="lossCounter">0</span>
+            </div>
+        </div>
 
+    </div>
 
-    
-      </div>
-    <h1>Let's Play Hangman!</h1>
-
+    <!-- Linking Javascript -->
     <script type="text/javascript">
+
+    // My Global Variables
+    //--------------------------------------------------
 
 
 
