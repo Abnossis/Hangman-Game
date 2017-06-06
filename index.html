@@ -177,15 +177,74 @@ function startGame() {
     	document.getElementById('wordToGuess').innerHtml = positiveAndBlanks;
     }
 
-    // changes HTML
+    // changes to HTML
     document.getElementById('wordToGuess').innerHtml = positiveAndBlanks.join(' ');
     document.getElementById('numBlanks').innerHtml = guessesLeft;
     document.getElementById('winCounter').innerHtml = winCount;
     document.getElementById('lossCounter').innerHtml = lossCount;
     document.getElementById('wrongGuesses').innerHtml = wrongLetter;
+
+    // console test
+    console.log(selectedWord);
+    console.log(lettersInWord);
+    console.log(numBlanks);
+    console.log(positiveAndBlanks);
+
+
 }
 
-    
+function comparingLetters(userKey)
+{
+
+    console.log('Working');
+    // If user selected key belongs to the choosen word run this function
+    if(selectedWord.indexOf(userKey) > -1)
+    {    
+    	// loops equal to the amount of blanks
+        for(var i = 0; i < numBlanks; i++)
+        {   //fills in right index with user key
+        	if (lettersInWord[i] === userKey)
+        	{
+                rigthGuessCounter++;
+                positiveAndBlanks[i] = userKey;
+                document.getElementById('wordToGuess').innerHtml = positiveAndBlanks.join(' ');
+            }
+        }
+
+        // console test
+        console.log(positiveAndBlanks);
+        }
+        //by pressing the wrong key
+        else
+        {   wrongLetter.push(userKey);
+        	guessesLeft--;
+            // changes to HTML
+            document.getElementById('numGuesses').innerHtml = guessesLeft;
+            document.getElementById('wrongGuesses').innerHtml = wrongLetter;
+            // console test
+            document.getElementById('Wrong letters = ' + wrongLetter);
+            document.getElementById('Guesses left are ' + guessesLeft);
+            
+        }
+}
+function winLose
+{
+   // When number blanks if filled with the right Zoo Animal the you win
+   if (rigthGuessCounter === numBlanks) 
+   {
+      //count to Win
+      
+   }
+
+
+}
+
+        }
+
+
+
+
+	     }    
 
 
 
