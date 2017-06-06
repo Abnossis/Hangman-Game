@@ -10,20 +10,19 @@
     <!-- Viewport Inclusion -->
 
     <!-- Linking reset.css -->
-<!--     <link rel="stylesheet" type="text/css" href="assets/css/reset.css"> -->
     <!-- Linking reset.css -->
 
     <!-- Linking style.css -->
-<!--    <link rel="stylesheet" type="text/css" href="assets/css/style.css"> -->
-   <!-- Linking style.css -->
+    <!--    <link rel="stylesheet" type="text/css" href="assets/css/style.css"> -->
+    <!-- Linking style.css -->
 
-   <!-- Bootstrap CDN -->
-   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-   <!-- Bootstrap CDN -->
+    <!-- Bootstrap CDN -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <!-- Bootstrap CDN -->
 
-   <!-- Bootstrap CDN -->
+    <!-- Bootstrap CDN -->
 
-   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
 </head>
 
@@ -43,7 +42,7 @@
              <h3 class="panel-heading">Word to Guess</h3>
             </div>	
             <div class="panel-body">
-                <h2 id="wordToH=Guess">_ _ _ _ _ _ _</h2>
+                <h2 id="wordToGuess">_ _ _ _ _ _ _</h2>
             </div>
         </div>
 
@@ -87,13 +86,13 @@
 // My Global Variables
 //--------------------------------------------------
 
-var Wordpressedtracking = ['a','b','c','d','e',
+var rigthGuessCounter = ['a','b','c','d','e',
                            'f','g','h','i','j',
                            'k','l','m','o','p',
                            'q','r','s','t','u',
                            'v','w','x','y','z'];
 
-// This is where i hold all my Zoo Animals
+// This is where  hold all my Zoo Animals
 var wordBank = ['giraffe','bear','jaguar',
                 'chimpanzee','lion','alligator'];
 // This is where I hold the Selected Word
@@ -136,18 +135,18 @@ function reset(){
     guessesLeft = 9;
     wrongLetter = [];
     positiveAndBlanks = [];
-    Wordpressedtracking = ['a','b','c','d','e',
+    rigthGuessCounter = ['a','b','c','d','e',
                            'f','g','h','i','j',
                            'k','l','m','o','p',
                            'q','r','s','t','u',
                            'v','w','x','y','z'];
-    test=false;
+    // test=false;
     startGame();
-
 }
-function startGame() {
+function startGame() 
+{
 	// selects ramdom word from wordBank
-	selectedWord = wordBank[Math.floor(Math.ramdom() * wordBank.length)];
+	selectedWord = wordBank[Math.floor(Math.random() * wordBank.length)];
 
 	// split the selected word into individual letters
 	lettersInWord = selectedWord.split('');
@@ -161,13 +160,13 @@ function startGame() {
     letterGuessed = 0;
     rigthGuessCounter = 0;
     guessesLeft = 9;
-    wrongLetter = [];
-    positiveAndBlanks = [];
-    Wordpressedtracking = ['a','b','c','d','e',
-                           'f','g','h','i','j',
-                           'k','l','m','o','p',
-                           'q','r','s','t','u',
-                           'v','w','x','y','z'];
+    wrongLetter =[];
+    positiveAndBlanks =[];
+    rigthGuessCounter = ['a','b','c','d','e',
+                         'f','g','h','i','j',
+                         'k','l','m','o','p',
+                         'q','r','s','t','u',
+                         'v','w','x','y','z'];
 
 
     //filling the blanks
@@ -189,11 +188,9 @@ function startGame() {
     console.log(lettersInWord);
     console.log(numBlanks);
     console.log(positiveAndBlanks);
-
-
 }
 
-function comparingLetters(userKey)
+function compareLetters(userKey)
 {
 
     console.log('Working');
@@ -202,7 +199,8 @@ function comparingLetters(userKey)
     {    
     	// loops equal to the amount of blanks
         for(var i = 0; i < numBlanks; i++)
-        {   //fills in right index with user key
+        {   
+            //fills in right index with user key
         	if (lettersInWord[i] === userKey)
         	{
                 rigthGuessCounter++;
@@ -213,43 +211,74 @@ function comparingLetters(userKey)
 
         // console test
         console.log(positiveAndBlanks);
-        }
-        //by pressing the wrong key
-        else
-        {   wrongLetter.push(userKey);
-        	guessesLeft--;
-            // changes to HTML
-            document.getElementById('numGuesses').innerHtml = guessesLeft;
-            document.getElementById('wrongGuesses').innerHtml = wrongLetter;
-            // console test
-            document.getElementById('Wrong letters = ' + wrongLetter);
-            document.getElementById('Guesses left are ' + guessesLeft);
+    }
+    //by pressing the wrong key
+    else
+    {   wrongLetter.push(userKey);
+       	guessesLeft--;
+        // changes to HTML
+        document.getElementById('numGuesses').innerHtml = guessesLeft;
+        document.getElementById('wrongGuesses').innerHtml = wrongLetter;
+        // console test
+        document.getElementById('Wrong letters = ' + wrongLetter);
+        document.getElementById('Guesses left are ' + guessesLeft);
             
-        }
+    }
 }
-function winLose
+function winLose()
 {
-   // When number blanks if filled with the right Zoo Animal the you win
+   // When filled with the right Zoo Animal then you win
    if (rigthGuessCounter === numBlanks) 
    {
       //count to Win
-      
-   }
+      winCount++;
+      // changes to HTML
+      document.getElementById('winCounter').innerHtml = winCount;
+      alert('You Win');
+      reset();
+    }
 
+    //if the number of guesses reaches 0 then you lose
+    else if (guessesLeft === 0); 
+    {
+
+    	//count losses
+    	lossCount++;
+    	// changer to HTML
+    	document.getElementById('lossCounter').innerHtml = lossCount;
+    	alert('You Lose');
+    	reset();
+    }
 
 }
 
+ //  PROCCESS
+//--------------------------------------------------
+       
+startGame();
+
+document.onekeyup = function(event)
+{
+    test = true;
+    var letterGuessed = even.key;
+    for (var i = 0; i< rigthGuessCounter.length; i++)
+    {
+        
+        if(letterGuessed === rigthGuessCounter[i] && test === true)
+        {
+        var splitDword === rigthGuessCounter.splice (i,1);
+        // Test
+        console.log('Double word is = ' + doubleWord[i])
+        console.log('Splice Word is = ' + spliceBwoed);
+        
+        compareLetters(letterGuessed);
+        winLose();
         }
 
+    }
 
 
-
-	     }    
-
-
-
-
-    </script>
-
-  </body>
+}
+</script>
+</body>
 </html>
