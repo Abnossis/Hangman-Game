@@ -83,14 +83,14 @@
 	// My Global Variables
 	//--------------------------------------------------
 	// used to record how many times a ketter can be pressed
-	var rigthGuessCounter = ['a','b','c','d','e',
+	var doubleWord = ['a','b','c','d','e',
 	                           'f','g','h','i','j',
 	                           'k','l','m','o','p',
 	                           'q','r','s','t','u',
 	                           'v','w','x','y','z'];
 
 	// This is where  hold all my words
-	var wordBank = ['giraffe','bear','giraffe','lion']; 
+	var wordBank = ['giraffe','bear','Zebra','lion']; 
 	// This is where I hold the Selected Word
 	var selectedWord = "";
 	// This is where I hold the letters in a word
@@ -120,7 +120,6 @@
 
 		// split the selected word into individual letters
 		lettersInWord = selectedWord.split('');
-
 		//Get the number of blanks
 		numBlanks = lettersInWord.length;
 
@@ -213,10 +212,10 @@
         else
         {   
             wrongLetter.push(userKey);
-	            guessesLeft--;
+	        guessesLeft--;
             // changes to HTML
-            document.getElementById('numGuesses').innerHtml = guessesLeft;
-            document.getElementById('wrongGuesses').innerHtml = wrongLetter;
+            document.getElementById('numGuesses').innerHTML = guessesLeft;
+            document.getElementById('wrongGuesses').innerHTML = wrongLetter;
             // console test
             document.getElementById('Wrong letters = ' + wrongLetter);
             document.getElementById('Guesses left are ' + guessesLeft);   
@@ -266,9 +265,8 @@
 	            var spliceDword = doubleWord.splice(i,1);
 	            //  test / Debug
 	            console.log('Double word is = ' + doubleWord[i])
-	            console.log('Splice Word is = ' + spliceDWord);         
+	            console.log('Spliced Word is = ' + spliceDword);         
 	              
-	            // console.log('letterGuessed');
 	            compareLetters(letterGuessed);
 	            winLose();
 	        }
